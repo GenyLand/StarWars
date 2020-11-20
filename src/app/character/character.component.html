@@ -1,0 +1,331 @@
+<div class="container">
+
+  <div>
+    <h1>PERSONAJE</h1>
+    <mat-form-field appearance="fill">
+      <mat-label>Elije un Personaje</mat-label>
+      <mat-select>
+        <mat-option (click)="getPeople(null)">None</mat-option>
+        <mat-option *ngFor="let people of peoples" [value]="people.name" (click)="getPeople(people)">{{ people.name }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="people">
+    <h2>DATOS PERSONALES </h2>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>NOMBRE</mat-label>
+      <input matInput disabled [ngModel]="people.name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>ALTURA</mat-label>
+      <input matInput disabled [ngModel]="people.height">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>MASA</mat-label>
+      <input matInput disabled [ngModel]="people.mass">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>COLOR DE PELO</mat-label>
+      <input matInput disabled [ngModel]="people.hair_color">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>COLOR DE PIEL</mat-label>
+      <input matInput disabled [ngModel]="people.skin_color">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>CUMPLEAÑOS</mat-label>
+      <input matInput disabled [ngModel]="people.birth_year">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>GENERO</mat-label>
+      <input matInput disabled [ngModel]="people.gender">
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="homeworld">
+    <h2>PLANETA</h2>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>NOMBRE</mat-label>
+      <input matInput disabled [ngModel]="homeworld.name">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>PERIODO DE ROTACION</mat-label>
+      <input matInput disabled [ngModel]="homeworld.rotation_period">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>PERIODO ORBITALL</mat-label>
+      <input matInput disabled [ngModel]="homeworld.orbital_period">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>DIAMETRO</mat-label>
+      <input matInput disabled [ngModel]="homeworld.diameter">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>CLIMA</mat-label>
+      <input matInput disabled [ngModel]="homeworld.climate">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>GRAVEDAD</mat-label>
+      <input matInput disabled [ngModel]="homeworld.gravity">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>TERRENO</mat-label>
+      <input matInput disabled [ngModel]="homeworld.terrain">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>SUPERFICIE DEL AGUA</mat-label>
+      <input matInput disabled [ngModel]="homeworld.surface_water">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>POBLACION</mat-label>
+      <input matInput disabled [ngModel]="homeworld.population">
+    </mat-form-field>
+  </div>
+
+  <div *ngIf="dataSourceFilms.data.length > 0">
+    <h2>PELICULAS</h2>
+    <table mat-table #table [dataSource]="dataSourceFilms" class="table table-striped table-hover">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> TITULO </th>
+        <td mat-cell *matCellDef="let row"> {{row.title}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="episode">
+        <th mat-header-cell *matHeaderCellDef> EPIDOSIO </th>
+        <td mat-cell *matCellDef="let row"> {{row.episode_id}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="opening">
+        <th mat-header-cell *matHeaderCellDef> OPENING </th>
+        <td mat-cell *matCellDef="let row"> {{row.opening_crawl}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="director">
+        <th mat-header-cell *matHeaderCellDef> DIRECTOR </th>
+        <td mat-cell *matCellDef="let row"> {{row.director}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="producer">
+        <th mat-header-cell *matHeaderCellDef> PRODUCTOR </th>
+        <td mat-cell *matCellDef="let row"> {{row.producer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="release">
+        <th mat-header-cell *matHeaderCellDef> FECHA DE LANZAMIENTO </th>
+        <td mat-cell *matCellDef="let row"> {{row.release_date}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsFilms"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsFilms;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="dataSourceSpecies.data.length > 0">
+    <h2>ESPECIE</h2>
+
+    <table mat-table #table [dataSource]="dataSourceSpecies" class="table table-striped table-hover">
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="classification">
+        <th mat-header-cell *matHeaderCellDef> CLASIFICACION </th>
+        <td mat-cell *matCellDef="let row"> {{row.classification}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="designation">
+        <th mat-header-cell *matHeaderCellDef> DESIGNACION </th>
+        <td mat-cell *matCellDef="let row"> {{row.designation}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="average">
+        <th mat-header-cell *matHeaderCellDef> ALTURA MEDIA </th>
+        <td mat-cell *matCellDef="let row"> {{row.average_height}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="skin">
+        <th mat-header-cell *matHeaderCellDef> COLOR DE PIEL </th>
+        <td mat-cell *matCellDef="let row"> {{row.skin_colors}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hair">
+        <th mat-header-cell *matHeaderCellDef> COLOR DE PELO </th>
+        <td mat-cell *matCellDef="let row"> {{row.hair_colors}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="eye">
+        <th mat-header-cell *matHeaderCellDef> COLOR DE OJOS </th>
+        <td mat-cell *matCellDef="let row"> {{row.eye_colors}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="lifespan">
+        <th mat-header-cell *matHeaderCellDef> PROMEDIO DE VIDA </th>
+        <td mat-cell *matCellDef="let row"> {{row.average_lifespan}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="language">
+        <th mat-header-cell *matHeaderCellDef> LENGUAJE </th>
+        <td mat-cell *matCellDef="let row"> {{row.language}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsSpecies"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsSpecies;"></tr>
+    </table>
+  </div>
+
+  <div *ngIf="dataSourceVehicles.data.length > 0">
+    <h2>VEHICULOS</h2>
+
+    <table mat-table #table [dataSource]="dataSourceVehicles" class="table table-striped table-hover">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef> MODELO </th>
+        <td mat-cell *matCellDef="let row"> {{row.model}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef> FABRICANTE </th>
+        <td mat-cell *matCellDef="let row"> {{row.manufacturer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="credits">
+        <th mat-header-cell *matHeaderCellDef> CREDITOS </th>
+        <td mat-cell *matCellDef="let row"> {{row.cost_in_credits}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="length">
+        <th mat-header-cell *matHeaderCellDef> LONGITUD </th>
+        <td mat-cell *matCellDef="let row"> {{row.length}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="atmosphering">
+        <th mat-header-cell *matHeaderCellDef> VELOCIDAD MAXIMA ATMOSFERA </th>
+        <td mat-cell *matCellDef="let row"> {{row.max_atmosphering_speed}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="crew">
+        <th mat-header-cell *matHeaderCellDef> TRIPULACION </th>
+        <td mat-cell *matCellDef="let row"> {{row.crew}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="passengers">
+        <th mat-header-cell *matHeaderCellDef> PASAJEROS </th>
+        <td mat-cell *matCellDef="let row"> {{row.passengers}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cargo">
+        <th mat-header-cell *matHeaderCellDef> CAPACIDAD DE CARGA </th>
+        <td mat-cell *matCellDef="let row"> {{row.cargo_capacity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="consumables">
+        <th mat-header-cell *matHeaderCellDef> CONSUMIBLES </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumables}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="vehicle">
+        <th mat-header-cell *matHeaderCellDef> CLASE DE VEHICULO </th>
+        <td mat-cell *matCellDef="let row"> {{row.vehicle_class}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsVehicles"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsVehicles;"></tr>
+    </table>     
+  </div>
+
+  <div *ngIf="dataSourceStarShips.data.length > 0">
+    <h2>NAVES ESPACIALES </h2>
+
+    <table mat-table #table [dataSource]="dataSourceStarShips" class="table table-striped table-hover">
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> NOMBRE </th>
+        <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="model">
+        <th mat-header-cell *matHeaderCellDef> MODELO </th>
+        <td mat-cell *matCellDef="let row"> {{row.model}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="manufacturer">
+        <th mat-header-cell *matHeaderCellDef> FABRICANTE </th>
+        <td mat-cell *matCellDef="let row"> {{row.manufacturer}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="credits">
+        <th mat-header-cell *matHeaderCellDef> CREDITOS </th>
+        <td mat-cell *matCellDef="let row"> {{row.cost_in_credits}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="length">
+        <th mat-header-cell *matHeaderCellDef> LONGITUD </th>
+        <td mat-cell *matCellDef="let row"> {{row.length}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="atmosphering">
+        <th mat-header-cell *matHeaderCellDef> VELOCIDAD MAXIMA ATMOSFERA </th>
+        <td mat-cell *matCellDef="let row"> {{row.max_atmosphering_speed}} </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="crew">
+        <th mat-header-cell *matHeaderCellDef> TRIPULACION </th>
+        <td mat-cell *matCellDef="let row"> {{row.crew}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="passengers">
+        <th mat-header-cell *matHeaderCellDef> PASAJEROS </th>
+        <td mat-cell *matCellDef="let row"> {{row.passengers}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="cargo">
+        <th mat-header-cell *matHeaderCellDef> CAPACIDAD DE CARGA </th>
+        <td mat-cell *matCellDef="let row"> {{row.cargo_capacity}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="consumables">
+        <th mat-header-cell *matHeaderCellDef> CONSUMIBLES </th>
+        <td mat-cell *matCellDef="let row"> {{row.consumables}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="hyperdrive">
+        <th mat-header-cell *matHeaderCellDef> HIPERIMPULSOR </th>
+        <td mat-cell *matCellDef="let row"> {{row.hyperdrive_rating}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="mglt">
+        <th mat-header-cell *matHeaderCellDef> MGLT </th>
+        <td mat-cell *matCellDef="let row"> {{row.mglt}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="starship">
+        <th mat-header-cell *matHeaderCellDef> CLASE DE NAVE ESPACIAL </th>
+        <td mat-cell *matCellDef="let row"> {{row.starship_class}} </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="columnsStarShips"></tr>
+      <tr mat-row *matRowDef="let row; columns: columnsStarShips;"></tr>
+    </table>    
+  </div>
+</div>

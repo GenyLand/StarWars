@@ -1,0 +1,48 @@
+<div class="container">
+  <h1>RESIDENTES</h1>
+  <table mat-table [dataSource]="dataSource" class="table table-striped table-hover">
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>NOMBRE</th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="height">
+      <th mat-header-cell *matHeaderCellDef>ALTURA</th>
+      <td mat-cell *matCellDef="let row">{{ row.height }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="mass">
+      <th mat-header-cell *matHeaderCellDef>MASA</th>
+      <td mat-cell *matCellDef="let row">{{ row.mass }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="hair_color">
+      <th mat-header-cell *matHeaderCellDef>COLOR DE PELO</th>
+      <td mat-cell *matCellDef="let row">{{ row.hair_color }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="skin_color">
+      <th mat-header-cell *matHeaderCellDef>COLOR DE PIEL</th>
+      <td mat-cell *matCellDef="let row">{{ row.skin_color }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="eye_color">
+      <th mat-header-cell *matHeaderCellDef>COLOR DE OJOS</th>
+      <td mat-cell *matCellDef="let row">{{ row.eye_color }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="birth_year">
+      <th mat-header-cell *matHeaderCellDef>CUMPLEAÑOS</th>
+      <td mat-cell *matCellDef="let row">{{ row.birth_year }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="gender">
+      <th mat-header-cell *matHeaderCellDef>GENERO</th>
+      <td mat-cell *matCellDef="let row">{{ row.gender }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="columns"></tr>
+    <tr mat-row *matRowDef="let row; columns: columns"></tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+</div>
