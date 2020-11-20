@@ -1,27 +1,43 @@
-# StarWars
+# StarWars 🚀
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.6.
 
-## Development server
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+### Informacion 📋
 
-## Code scaffolding
+_Buen dia, comparto el codigo del examen que se solicito, con respecto a esto se pedia el consumo de cierta API la cual aca tenemos la doc._
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```
+https://swapi.dev/documentation
+```
 
-## Build
+_Dentro del examen se pedia crear los siguientes endpoints:_
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```
+/personaje/{nombre}
+/residentes
+/personajes
+```
 
-## Running unit tests
+_Buscando en la doc proporcionada se encontraron los siguientes recursos:_
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+    "films": "https://swapi.dev/api/films/",
+    "people": "https://swapi.dev/api/people/",
+    "planets": "https://swapi.dev/api/planets/",
+    "species": "https://swapi.dev/api/species/",
+    "starships": "https://swapi.dev/api/starships/",
+    "vehicles": "https://swapi.dev/api/vehicles/"
+```
 
-## Running end-to-end tests
+_Dentro de cada uno de estos recursos se puede acceder a los siguientes endpoints_
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```
+/people/
+/people/:id/
+/people/schema/
+```
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+_De lo cual no encontre una manera clara de crear los endpoints solicitados, por lo cual he realizado la funcionalidad requerida de una manera diferente,
+utilizando los endpoints dados por la API he consumido algunos de ellos por ejemplo: ```/people/ y /people/:id/``` obteniendo los datos de estos endpoints
+he realizado algunos filtros para poder satisfacer los requisitos._
